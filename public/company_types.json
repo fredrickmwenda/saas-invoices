@@ -1,0 +1,82 @@
+[
+    {
+        "value": "IT",
+        "label": "Information Technology"
+    },
+    {
+        "value": "hotel",
+        "label": "Hotel & Hospitality"
+    },
+    {
+        "value": "agriculture",
+        "label": "Agriculture"
+    },
+    {
+        "value": "finance",
+        "label": "Finance & Banking"
+    },
+    {
+        "value": "manufacturing",
+        "label": "Manufacturing"
+    },
+    {
+        "value": "retail",
+        "label": "Retail & E-commerce"
+    },
+    {
+        "value": "healthcare",
+        "label": "Healthcare & Medical"
+    },
+    {
+        "value": "education",
+        "label": "Education & Training"
+    },
+    {
+        "value": "real_estate",
+        "label": "Real Estate & Property Management"
+    },
+    {
+        "value": "transportation",
+        "label": "Transportation & Logistics"
+    },
+    {
+        "value": "construction",
+        "label": "Construction & Engineering"
+    },
+    {
+        "value": "media",
+        "label": "Media & Entertainment"
+    },
+    {
+        "value": "energy",
+        "label": "Energy & Utilities"
+    },
+    {
+        "value": "telecommunications",
+        "label": "Telecommunications"
+    },
+    {
+        "value": "consulting",
+        "label": "Consulting & Business Services"
+    },
+    {
+        "value": "legal",
+        "label": "Legal & Law Firms"
+    },
+    {
+        "value": "marketing",
+        "label": "Marketing & Advertising"
+    },
+    {
+        "value": "food_beverage",
+        "label": "Food & Beverage"
+    },
+    {
+        "value": "automotive",
+        "label": "Automotive & Mechanics"
+    },
+    {
+        "value": "non_profit",
+        "label": "Non-Profit & Charitable Organizations"
+    }
+]
