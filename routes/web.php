@@ -53,29 +53,15 @@ Route::middleware(['xss'])->group(function () {
 
             return Redirect::to(getClientDashboardURL());
         }
-        dd('were');
+    
 
-        // return redirect(route('login'));
-        return redirect(route('index'));
+        return redirect(route('login'));
+        //return redirect(route('index'));
     });
 
-    Route::get('/', [FrontController::class, 'index'])->name('index');
-    Route::get('/about-us', [FrontController::class, 'about'])->name('about');
-    Route::get('/faqs', [FrontController::class, 'faqs'])->name('faqs');
-    Route::get('/careers', [FrontController::class, 'careers'])->name('careers');
-    Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
-    Route::get('/awards', [FrontController::class, 'awards'])->name('awards');
-    Route::get('/blog', [FrontController::class, 'blog'])->name('blog');
-    Route::get('/blog/{id}', [FrontController::class, 'single_blog'])->name('single_blog');
-    Route::get('/', [FrontController::class, 'index'])->name('index');
-    Route::get('/', [FrontController::class, 'index'])->name('index');
-    Route::get('/case-studies-classic', [FrontController::class, 'case_study_classic'])->name('case.classic');
-    Route::get('/case-studies-grid', [FrontController::class, 'case_study_grid'])->name('case.grid');
-    Route::get('/case-studies-carousel', [FrontController::class, 'case_study_carousel'])->name('case.carousel');
-    Route::get('/request-quote', [FrontController::class, 'request_quote'])->name('request-quote');
-    Route::get('/services', [FrontController::class, 'services'])->name('services');
-    Route::get('/single-service', [FrontController::class, 'service_details'])->name('single-service');
-    // Route::get('/', [FrontController::class, 'index'])->name('index');
+    // Route::get('/', [
+    // 'index'])->name('index');
+    
 
 
 
