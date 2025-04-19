@@ -58,7 +58,8 @@ $(document).on('click', '#submitStepper', function () {
             if (result.success) {
                 if (result.message != '') {
                     displaySuccessMessage(result.message);
-                }
+                } 
+                // Redirect to dashboard as a tenant
                 window.location.href = route('admin.dashboard');
             }
         },

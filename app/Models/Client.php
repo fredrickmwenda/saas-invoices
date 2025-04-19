@@ -46,7 +46,7 @@ class Client extends Model  implements HasMedia
 {
 
     use InteractsWithMedia;
-    use HasFactory;
+    use HasFactory; 
 
     protected $table = 'clients';
 
@@ -142,4 +142,6 @@ class Client extends Model  implements HasMedia
     {
         return $this->hasMany(Invoice::class);
     }
+
+  
 }
