@@ -65,6 +65,11 @@ class Country extends Model
         'phone_code' => 'nullable|integer',
     ];
 
+    public static function getIsoCode($country): mixed
+    {
+        return self::where('name', $country)->first()->short_code;
+    }
+
     public function states(): HasMany
     {
         return $this->hasMany(State::class, 'country_id');

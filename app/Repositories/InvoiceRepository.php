@@ -494,7 +494,7 @@ class InvoiceRepository extends BaseRepository
         $paymentMode = Payment::PAYMENT_MODE;
         $availableMode = [
             Payment::PAYPAL => 'paypal_enabled',
-            Payment::RAZORPAY => 'razorpay_enabled',
+            Payment::MPESA =>  'mpesa_enabled',
             Payment::STRIPE => 'stripe_enabled',
         ];
         foreach ($availableMode as $key => $mode) {

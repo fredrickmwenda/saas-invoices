@@ -64,7 +64,7 @@
         <tr>
             <td>
             <div class="logo">
-                <img width="150px" src="{{ asset('assets/smart/images/logo/logo-b.png') }}" alt="">
+                <img width="150px" src="{{ asset('assets/images/logo/logo-b.png') }}" alt="">
             </div>
             </td>
         </tr>

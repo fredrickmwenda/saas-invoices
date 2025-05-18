@@ -11,7 +11,7 @@ class CreateSubscriptionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,4 +25,10 @@ class CreateSubscriptionRequest extends FormRequest
             //
         ];
     }
+
+    public function messages()
+    {
+        
+    }
+
 }

@@ -21,9 +21,9 @@ return new class extends Migration
             $table->enum('duration_unit', ['day', 'week', 'month', 'year'])->default('month');
             $table->integer('trial_period')->default(0);
             $table->enum('trial_period_unit', ['day', 'week', 'month', 'year'])->default('day');
-            $table->boolean('is_active')->default(true);
+            $table->enum('status', ['active', 'inactive', 'archived'])->default('active');
             //features as json
-            $table->json('features')->nullable();
+            $table->json('features');
             $table->timestamps();
         });
     }

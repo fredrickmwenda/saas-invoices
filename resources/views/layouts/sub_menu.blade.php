@@ -6,6 +6,7 @@
         </a>
     </li>
 @endrole
+
 @hasrole('client')
     <li
         class="nav-item position-relative mx-xl-3 mb-3 mb-xl-0 {{ !Request::is('*/dashboard*', '*/currency-reports*') ? 'd-none' : '' }}">
@@ -14,6 +15,24 @@
         </a>
     </li>
 @endrole
+<!-- subscriptions and subscription  -->
+
+
+@role('admin')
+    <li class="nav-item position-relative mx-xl-3 mb-3 mb-xl-0 {{ !Request::is('admin/subscription-plans*') ? 'd-none' : '' }}">
+        <a class="nav-link p-0 {{ Request::is('admin/subscription-plans*') ? 'active' : '' }}"
+            href="{{ route('subscription-plans.index') }}">{{ __('messages.subscription_plans') }}</a>
+    </li>
+@endrole
+
+<!-- list subscription plans in card format  -->
+ @role('admin')
+    <li class="nav-item position-relative mx-xl-3 mb-3 mb-xl-0 {{ !Request::is('admin/subscription-plans*') ? 'd-none' : '' }}">
+        <a class="nav-link p-0 {{ Request::is('admin/subscription-plans*') ? 'active' : '' }}"
+            href="{{ route('subscription-plans.list') }}">{{ __('messages.subscription_plans') }}</a>
+    </li>
+@endrole
+
 @role('admin')
     <li
         class="nav-item position-relative mx-xl-3 mb-3 mb-xl-0 {{ !Request::is('*/dashboard*', '*/currency-reports*') ? 'd-none' : '' }}">

@@ -18,14 +18,14 @@ use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\FrontController;
+
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\TagController;
-use App\Http\Controllers\BlogCategoryController;
-use App\Http\Controllers\BlogController;
+
 use App\Http\Controllers\ClientContactController;
 use App\Http\Controllers\MediaManagerController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SubscriptionPlanController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -102,6 +102,22 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
     Route::resource('users', UserController::class);
     Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');
 
+    //subscription plans
+    Route::prefix('subscription-plans')->name('subscription-plans.')->group(function () {
+        //index
+        Route::get('/', [SubscriptionPlanController::class, 'index'])->name('index');
+        //list subscription plans in card view
+        Route::get('list', [SubscriptionPlanController::class, 'listSubscriptionPlans'])->name('list');
+        Route::get('create', [SubscriptionPlanController::class, 'create'])->name('create');
+        Route::post('store', [SubscriptionPlanController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [SubscriptionPlanController::class, 'edit'])->name('edit');
+        Route::put('{id}', [SubscriptionPlanController::class, 'update'])->name('update');
+        Route::delete('{id}', [SubscriptionPlanController::class, 'destroy'])->name('destroy');
+        Route::post('bulk-action', [SubscriptionPlanController::class, 'bulkAction'])->name('bulk-action');
+        Route::post('{id}/change-status', [SubscriptionPlanController::class, 'changeStatus'])->name('change-status');
+    });
+    //Subscription route
+
 
     // Client route
     Route::resource('clients', ClientController::class);
@@ -114,23 +130,7 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
     Route::post('/tags/update-tag', [TagController::class, 'update'])->name('tags.update');
     Route::delete('/tags/delete/{id}', [TagController::class, 'destroy'])->name('tags.delete');
 
-    Route::prefix('blogs')->name('blogs.')->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('index');
-        Route::get('/add-blog', [BlogController::class, 'create'])->name('create');
-        Route::post('/add-blog', [BlogController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('edit');
-        Route::post('/update-blog', [BlogController::class, 'update'])->name('update');
-        Route::post('/update-popular', [BlogController::class, 'updatePopular'])->name('updatePopular');
-        Route::post('/update-status', [BlogController::class, 'updateStatus'])->name('updateStatus');
-        Route::get('/delete/{id}', [BlogController::class, 'delete'])->name('delete');
-
-        # categories
-        Route::get('/categories', [BlogCategoryController::class, 'index'])->name('blogCategories.index');
-        Route::post('/category', [BlogCategoryController::class, 'store'])->name('blogCategories.store');
-        Route::get('/categories/edit/{id}', [BlogCategoryController::class, 'edit'])->name('blogCategories.edit');
-        Route::post('/categories/update-category', [BlogCategoryController::class, 'update'])->name('blogCategories.update');
-        Route::get('/categories/delete/{id}', [BlogCategoryController::class, 'delete'])->name('blogCategories.delete');
-    });
+ 
     //Category Route
     Route::resource('categories', CategoryController::class)->names([
         'index' => 'category.index',
@@ -356,6 +356,20 @@ Route::get('/get-api-key', function () {
         'apiKey' => env('HERE_API_KEY')
     ]);
 });
+
+
+// Global dashboard route for sidebar and general use
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Reports index route (placeholder)
+Route::get('/reports', function () {
+    return view('reports.index'); // You can replace this with your actual controller later
+})->name('reports.index');
+
+// Settings index route (placeholder)
+Route::get('/settings', function () {
+    return view('settings.index'); // You can replace this with your actual controller later
+})->name('settings.index');
 
 
 require __DIR__ . '/upgrade.php';

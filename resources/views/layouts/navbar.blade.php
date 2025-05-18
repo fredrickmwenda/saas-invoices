@@ -4,8 +4,8 @@
         <div class="container">
 
           <a class="navbar-brand" href="{{route('index')}}">
-            <img src="{{ asset('assets/smart/images/logo/logo.png')}}" class="logo-light" alt="logo">
-            <img src="{{ asset('assets/smart/images/logo/logo-b.png')}}" class="logo-dark" alt="logo">
+            <img src="{{ asset('assets/images/logo/logo.png')}}" class="logo-light" alt="logo">
+            <img src="{{ asset('assets/images/logo/logo-b.png')}}" class="logo-dark" alt="logo">
           </a>
           <button class="navbar-toggler" type="button">
             <span class="menu-lines"><span></span></span>

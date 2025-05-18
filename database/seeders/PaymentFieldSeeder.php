@@ -16,10 +16,10 @@ class PaymentFieldSeeder extends Seeder
         Setting::create(['key' => 'stripe_secret', 'value' => '']);
         Setting::create(['key' => 'paypal_client_id', 'value' => '']);
         Setting::create(['key' => 'paypal_secret', 'value' => '']);
-        Setting::create(['key' => 'razorpay_key', 'value' => '']);
-        Setting::create(['key' => 'razorpay_secret', 'value' => '']);
+        Setting::create(['key' => 'mpesa_key', 'value' => '']);
+        Setting::create(['key' => 'mpesa_secret', 'value' => '']);
         Setting::create(['key' => 'stripe_enabled', 'value' => 0]);
         Setting::create(['key' => 'paypal_enabled', 'value' => 0]);
-        Setting::create(['key' => 'razorpay_enabled', 'value' => 0]);
+        Setting::create(['key' => 'mpesa_enabled', 'value' => 0]);
     }
 }

@@ -6,7 +6,43 @@
     <title>{{__('Service Unavailable')}}</title>
 </head>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,500');
+    @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        src: url(/public/fonts/Poppins-Regular.ttf?35d26b781dc5fda684cce6ea04a41a75) format("truetype");
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 500;
+        src: url(/public/fonts/Poppins-Medium.ttf?673ed42382ab264e0bf5b33f3579568c) format("truetype");
+        font-display: swap;
+    }
+    @font-face {
+        font-family: "Poppins";
+        font-style: italic;
+        font-weight: 500;
+        src: url(/public/fonts/Poppins-MediumItalic.ttf?89e040c6a64d18f620dc8547b01b6291) format("truetype");
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        src: url(/public/fonts/Poppins-Bold.ttf?cdb29a5d7ccf57ff05a3fd9216d11771) format("truetype");
+        font-display: swap;
+    }
+    @font-face {
+        font-family: "Poppins";
+        font-style: italic;
+        font-weight: 700;
+        src: url(/public/fonts/Poppins-BoldItalic.ttf?cfb635a5111b545f5598482a64d2a2c3) format("truetype");
+        font-display: swap;
+    }
 
     html,
     .container > .row,

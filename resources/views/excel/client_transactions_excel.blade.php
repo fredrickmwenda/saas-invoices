@@ -30,8 +30,8 @@
                 <td> Stripe</td>
             @elseif($transaction->payment_mode == \App\Models\Payment::PAYPAL)
                 <td> Paypal</td>
-            @elseif($transaction->payment_mode == \App\Models\Payment::RAZORPAY)
-                <td> Razorpay</td>
+            @elseif($transaction->payment_mode == \App\Models\Payment::MPESA)
+                <td> Mpesa</td>
             @elseif($transaction->payment_mode == \App\Models\Payment::CASH)
                 <td> Cash</td>
             @endif

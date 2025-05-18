@@ -100,12 +100,12 @@ class Setting extends Model implements HasMedia
         'app_logo' => 'nullable|mimes:jpg,jpeg,png',
         'company_logo' => 'nullable|mimes:jpg,jpeg,png',
         'company_type' => 'nullable|mimes:jpg,jpeg,png',
-        // 'stripe_key' => 'nullable',
-        // 'stripe_secret' => 'nullable',
-        // 'paypal_client_id' => 'nullable',
-        // 'paypal_secret' => 'nullable',
-        // 'razorpay_key' => 'nullable',
-        // 'razorpay_secret' => 'nullable',
+        'stripe_key' => 'nullable',
+        'stripe_secret' => 'nullable',
+        'paypal_client_id' => 'nullable',
+        'paypal_secret' => 'nullable',
+        'mpesa_key' => 'nullable',
+        'mpesa_secret' => 'nullable',
         'country' => 'nullable|required_with:show_additional_address_in_invoice',
         'state' => 'nullable|required_with:show_additional_address_in_invoice',
         'city' => 'nullable|required_with:show_additional_address_in_invoice',
@@ -121,6 +121,6 @@ class Setting extends Model implements HasMedia
             return $media->getFullUrl();
         }
 
-        return asset('assets/smart/images/logo/logo-b.png');
+        return asset('assets/images/logo/logo-b.png');
     }
 }

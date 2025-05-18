@@ -9,8 +9,44 @@ This files table contents are outlined below>>>>>
 
 *******************************************
 **/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap");
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/public/fonts/Poppins-Regular.ttf?35d26b781dc5fda684cce6ea04a41a75) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url(/public/fonts/Poppins-Medium.ttf?673ed42382ab264e0bf5b33f3579568c) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 500;
+  src: url(/public/fonts/Poppins-MediumItalic.ttf?89e040c6a64d18f620dc8547b01b6291) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url(/public/fonts/Poppins-Bold.ttf?cdb29a5d7ccf57ff05a3fd9216d11771) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 700;
+  src: url(/public/fonts/Poppins-BoldItalic.ttf?cfb635a5111b545f5598482a64d2a2c3) format("truetype");
+  font-display: swap;
+}
+
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
@@ -94,7 +130,7 @@ This files table contents are outlined below>>>>>
   --bs-dark-border-subtle: #adb5bd;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Poppins";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -13309,7 +13345,7 @@ textarea.form-control-lg {
 /* Global Area Style
 ============================================*/
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins";
 }
 
 a {

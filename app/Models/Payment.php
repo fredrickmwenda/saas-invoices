@@ -121,7 +121,8 @@ class Payment extends Model implements HasMedia
 
     const CASH = 4;
 
-    const RAZORPAY = 5;
+
+    const MPESA = 6;
 
     const ALL = 0;
 
@@ -131,7 +132,7 @@ class Payment extends Model implements HasMedia
         self::STRIPE => 'Stripe',
         self::PAYPAL => 'Paypal',
         self::CASH => 'Cash',
-        self::RAZORPAY => 'Razorpay',
+        self::MPESA => 'Mpesa'
     ];
 
     public static $rules = [

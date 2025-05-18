@@ -186,33 +186,33 @@ $(document).ready(function () {
                 },
             });
         } else if (paymentMode == 5) {
-            $.ajax({
-                type: "GET",
-                url: route("razorpay.init"),
-                data: $(this).serialize(),
-                success: function (result) {
-                    if (result.success) {
-                        $("#publicPaymentModal").modal("hide");
-                        let { id, amount, name, email, invoiceId, invoice_id } =
-                            result.data;
-                        options.description = invoice_id;
-                        options.order_id = id;
-                        options.amount = amount;
-                        options.prefill.name = name;
-                        options.prefill.email = email;
-                        options.prefill.invoiceId = invoiceId;
-                        let razorPay = new Razorpay(options);
-                        razorPay.open();
-                        razorPay.on("payment.failed");
-                    }
-                },
-                error: function (result) {
-                    displayErrorMessage(result.responseJSON.message);
-                },
-                complete: function () {
-                    setAdminBtnLoader(btnSubmitEle);
-                },
-            });
+            // $.ajax({
+            //     type: "GET",
+            //     url: route("razorpay.init"),
+            //     data: $(this).serialize(),
+            //     success: function (result) {
+            //         if (result.success) {
+            //             $("#publicPaymentModal").modal("hide");
+            //             let { id, amount, name, email, invoiceId, invoice_id } =
+            //                 result.data;
+            //             options.description = invoice_id;
+            //             options.order_id = id;
+            //             options.amount = amount;
+            //             options.prefill.name = name;
+            //             options.prefill.email = email;
+            //             options.prefill.invoiceId = invoiceId;
+            //             let razorPay = new Razorpay(options);
+            //             razorPay.open();
+            //             razorPay.on("payment.failed");
+            //         }
+            //     },
+            //     error: function (result) {
+            //         displayErrorMessage(result.responseJSON.message);
+            //     },
+            //     complete: function () {
+            //         setAdminBtnLoader(btnSubmitEle);
+            //     },
+            // });
         }
     });
 

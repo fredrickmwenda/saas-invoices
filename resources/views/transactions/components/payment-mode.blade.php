@@ -6,7 +6,7 @@
     <span class="badge bg-light-primary fs-7">{{$row->payments_mode}}</span>
 @elseif($row->payments_mode === 'Cash')
     <span class="badge bg-light-info fs-7">{{$row->payments_mode}}</span>
-@elseif($row->payments_mode === 'Razorpay')
+@elseif($row->payments_mode === 'Mpesa')
     <span class="badge bg-light-danger fs-7">{{$row->payments_mode}}</span>
 @endif
 <div class="d-flex align-items-center justify-content-center mt-2">

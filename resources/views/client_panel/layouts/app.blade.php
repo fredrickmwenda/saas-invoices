@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset(getSettingValue('favicon_icon')) }}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/> -->
     <!-- General CSS Files -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/third-party.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/page.css') }}">
@@ -20,16 +20,15 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dark.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins.dark.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/phone-number-dark.css') }}">
-        <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flatpickr/themes/dark.css')}}">
     @endif
     @livewireStyles
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
     @include('layouts.livewire.livewire-turbo')
-    <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
+    <script src="{{asset('assets/js/livewire/livewire-turbolinks.min.js')}}"
             data-turbolinks-eval="false" data-turbo-eval="false"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js" data-turbolinks-eval="false"
-            data-turbo-eval="false"></script>
+    <script src="{{asset('assets/js/stripe/stripe.js')}}"></script>
+
     <script src="{{ asset('assets/js/third-party.js') }}"></script>
     <script src="{{ asset('messages.js') }}"></script>
     <script data-turbo-eval="false">
@@ -46,38 +45,38 @@
         let invoiceStripePaymentUrl = '{{ route('client.stripe-payment') }}';
         let getUserLanguages = "{{getCurrentLanguageName()}}";
         Lang.setLocale(getUserLanguages);
-        let options = {
-            'key': "{{ config('payments.razorpay.key') }}",
-            'amount': 0, //  100 refers to 1
-            'currency': 'INR',
-            'name': "{{getAppName()}}",
-            'order_id': '',
-            'description': '',
-            'image': '{{ asset(getLogoUrl()) }}', // logo here
-            'callback_url': "{{ route('razorpay.success') }}",
-            'prefill': {
-                'email': '', // client email here
-                'name': '', // client name here
-                'invoiceId': '', //invoice id
-            },
-            'readonly': {
-                'name': 'true',
-                'email': 'true',
-                'invoiceId': 'true',
-            },
-            'theme': {
-                'color': '#4FB281',
-            },
-            'modal': {
-                'ondismiss': function () {
-                    $('#paymentForm').modal('hide');
-                    displayErrorMessage('Payment not completed.');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
-                },
-            },
-        };
+        // let options = {
+        //     'key': "{{ config('payments.razorpay.key') }}",
+        //     'amount': 0, //  100 refers to 1
+        //     'currency': 'INR',
+        //     'name': "{{getAppName()}}",
+        //     'order_id': '',
+        //     'description': '',
+        //     'image': '{{ asset(getLogoUrl()) }}', // logo here
+        //     'callback_url': "{{ route('razorpay.success') }}",
+        //     'prefill': {
+        //         'email': '', // client email here
+        //         'name': '', // client name here
+        //         'invoiceId': '', //invoice id
+        //     },
+        //     'readonly': {
+        //         'name': 'true',
+        //         'email': 'true',
+        //         'invoiceId': 'true',
+        //     },
+        //     'theme': {
+        //         'color': '#4FB281',
+        //     },
+        //     'modal': {
+        //         'ondismiss': function () {
+        //             $('#paymentForm').modal('hide');
+        //             displayErrorMessage('Payment not completed.');
+        //             setTimeout(function () {
+        //                 location.reload();
+        //             }, 1000);
+        //         },
+        //     },
+        // };
     </script>
     @routes
     <script src="{{ mix('assets/js/pages.js') }}"></script>

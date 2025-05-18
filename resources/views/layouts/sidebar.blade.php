@@ -150,60 +150,35 @@
 
 
             <li class="menu-title small text-uppercase">
-                <span class="menu-title-text">Blogging</span>
+                <span class="menu-title-text">Subscription</span>
             </li>
+
+          
 
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <span class="material-symbols-outlined menu-icon">auto_stories</span>
-                    <span class="title">Blogs</span>
+                    <span class="material-symbols-outlined menu-icon"> subscriptions</span>
+                    <span class="title">Subscriptions</span>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="{{ route('blogs.index')}}" class="menu-link">
-                           Blogs
+                        <a href="{{ route('subscription-plans.index')}}" class="menu-link">
+                           Subscription Plans
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('blogs.create')}}" class="menu-link">
-                            Add Blog
-                        </a>
-                    </li>
- 
-                </ul>
-            </li>
 
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <span class="material-symbols-outlined menu-icon">category</span>
-                    <span class="title">Categories</span>
-                </a>
-                <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="{{ route('blogs.blogCategories.index')}}" class="menu-link">
-                           Categories
+                        <a href="{{ route('subscription-plans.list')}}" class="menu-link">
+                            Subscriptions List
                         </a>
                     </li>
+                    
   
  
                 </ul>
             </li>
 
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <span class="material-symbols-outlined menu-icon">label</span>
-                    <span class="title">Tags</span>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="{{ route('tags.index')}}" class="menu-link">
-                           Tags
-                        </a>
-                    </li>
-                 
- 
-                </ul>
-            </li>
+      
            
            
           

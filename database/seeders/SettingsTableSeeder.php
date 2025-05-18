@@ -12,7 +12,7 @@ class SettingsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // $imageUrl = 'assets/smart/images/logo/logo-b.png';
+        // $imageUrl = 'assets/images/logo/logo-b.png';
 
         // Setting::create(['key' => 'app_name', 'value' => 'Servoll Technologies']);
         // Setting::create(['key' => 'app_logo', 'value' => $imageUrl]);

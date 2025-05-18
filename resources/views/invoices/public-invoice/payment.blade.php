@@ -8,7 +8,8 @@
     <link rel="icon" href="{{ asset(getSettingValue('favicon_icon')) }}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/fonts.css')}}">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/> -->
     <!-- General CSS Files -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/third-party.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/page.css') }}">
@@ -17,7 +18,7 @@
     <link href="{{ mix('assets/css/full-screen.css') }}" rel="stylesheet" type="text/css"/>
     @livewireStyles
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
+    <script src="{{asset('assets/js/livewire/livewire-turbolinks.min.js')}}"
             data-turbolinks-eval="false" data-turbo-eval="false"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js" data-turbolinks-eval="false"

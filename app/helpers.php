@@ -301,6 +301,18 @@ if (! function_exists('getCurrencySymbol')) {
         return $currencySymbol;
     }
 }
+if (! function_exists('getCurrencyOptions')) {
+    /**
+     * @return array
+     */
+    # get currency options for select2
+    # return ['id' => 'icon'] or ['id' => 'code'] for currency code
+
+    function getCurrencyOptions(): array
+    {
+        return Currency::pluck('icon', 'id')->toArray(); // or 'code' if you prefer
+    }
+}
 
 if (! function_exists('getInvoiceNoPrefix')) {
     /**

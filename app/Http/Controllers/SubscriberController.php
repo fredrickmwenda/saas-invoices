@@ -11,6 +11,22 @@ use App\Jobs\NewsletterSubscriptionJob;
 
 class SubscriberController extends Controller
 {
+    // create subscription plans
+    // subscribe a tenant to a plan
+    // update subscription plans
+    // cancel subscription plans
+    // get all subscription plans
+    // get all subscription plans for a tenant
+    // get all subscriptions for a tenant
+    //renew a subscription for a tenant
+    //change a subscription plan for a tenant
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['store', 'show']);
+    }
+
+    
     /**
      * Display a listing of the resource.
      */

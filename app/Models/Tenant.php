@@ -130,5 +130,16 @@ class Tenant extends Model
         return $this->hasOneThrough(SubscriptionPlan::class, Subscription::class);
     }
 
+    // active subscription
+    public function activeSubscription()
+    {
+        return $this->hasOne(Subscription::class)->where('status', 'active');
+    }
+    // active subscription plan
+    public function activeSubscriptionPlan()
+    {
+        return $this->hasOneThrough(SubscriptionPlan::class, Subscription::class)->where('status', 'active');
+    }
+
 
 }

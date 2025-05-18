@@ -29,8 +29,8 @@ return [
         'industry_type' => env('PAYTM_INDUSTRY_TYPE'),
     ],
 
-    'razorpay' => [
-        'key' => env('RAZORPAY_KEY'),
-        'secret' => env('RAZORPAY_SECRET'),
+    'mpesa' => [
+        'key' => env('MPESA_KEY'),
+        'secret' => env('MPESA_SECRET'),
     ],
 ];

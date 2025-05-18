@@ -45,20 +45,20 @@
                         </label>
                     </div>
                     <div class="form-group col-sm-5 mb-5">
-                        {{ Form::label('razorpay_key', __('messages.setting.razorpay_key').':', ['class' => 'form-label razorpay-key-label mb-3']) }}
-                        {{ Form::text('razorpay_key',$paymentGateway['razorpay_key'], ['class' => 'form-control razorpay-key ','placeholder' => __('messages.setting.razorpay_key')]) }}
+                        {{ Form::label('mpesa_key', __('messages.setting.mpesa_key').':', ['class' => 'form-label mpesa-key-label mb-3']) }}
+                        {{ Form::text('mpesa_key',$paymentGateway['mpesa_key'], ['class' => 'form-control mpesa-key ','placeholder' => __('messages.setting.mpesa_key')]) }}
                     </div>
                     <div class="form-group col-sm-5 mb-5">
-                        {{ Form::label('razorpay_secret', __('messages.setting.razorpay_secret').':', ['class' => 'form-label razorpay-secret-label mb-3']) }}
-                        {{ Form::text('razorpay_secret',$paymentGateway['razorpay_secret'], ['class' => 'form-control razorpay-secret ','placeholder' => __('messages.setting.razorpay_secret')]) }}
+                        {{ Form::label('mpesa_secret', __('messages.setting.mpesa_secret').':', ['class' => 'form-label mpesa-secret-label mb-3']) }}
+                        {{ Form::text('mpesa_secret',$paymentGateway['mpesa_secret'], ['class' => 'form-control mpesa-secret ','placeholder' => __('messages.setting.mpesa_secret')]) }}
                     </div>
                     <div class="form-group col-sm-2 mb-5 mt-4 mt-sm-10">
                         <label class="form-check form-switch form-check-custom ">
                             <input class="form-check-input feature" type="checkbox" value="1"
-                                   name="payment_gateway[razorpay_enabled]"
-                                   id="razorpay" {{$paymentGateway['razorpay_enabled'] == 1 ? "checked" : ""}}>
+                                   name="payment_gateway[mpesa_enabled]"
+                                   id="mpesa" {{$paymentGateway['mpesa_enabled'] == 1 ? "checked" : ""}}>
                             <span class="form-check-label fw-bold"
-                                  for="razorpay">{{ __('messages.setting.razorpay') }}</span>&nbsp;&nbsp;
+                                  for="mpesa">{{ __('messages.setting.mpesa') }}</span>&nbsp;&nbsp;
                         </label>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CheckSubscription;
 use App\Console\Commands\DueDateInvoiceReminderCommand;
 use App\Console\Commands\RecurringInvoiceCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -14,6 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command(CheckSubscription::class)
+            ->hourly()
+            ->appendOutputTo(storage_path('logs/commands.log'));
+            
         $schedule->command(RecurringInvoiceCommand::class)
             ->daily()
             ->appendOutputTo(storage_path('logs/commands.log'));

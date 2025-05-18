@@ -7,10 +7,11 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset(getSettingValue('favicon_icon')) }}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <!-- Fonts --> 
+    <link rel="stylesheet" href="{{ asset('assets/css/fonts.css')}}">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/> --> -->
     @yield('page_css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/third-party.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/third-party.css') }}"> 
     <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/page.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/plugins.css') }}">

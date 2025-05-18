@@ -28,21 +28,15 @@
         </a>
     </li>
  <!-- Additional Blog -->
-    <li class="nav-item {{ Request::is('admin/categories*') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('blogs.index') }}">
-            <span class="menu-icon">
-                <i class="fa-solid fas fa-th-list pe-3"></i>
-            </span>
-            <span class="aside-menu-title">{{ __('Blogs') }}</span>
-        </a>
-    </li>
+   
 
-    <li class="nav-item {{ Request::is('admin/categories*') ? 'active' : '' }}">
-        <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('blogs.blogCategories.index') }}">
+    <li class="nav-item {{ Request::is('admin/subscription-plans*') ? 'active' : '' }}">
+        <a class="nav-link d-flex align-items-center py-3" aria-current="page"
+            href="{{ route('subscription-plans.index') }}">
             <span class="menu-icon">
                 <i class="fa-solid fas fa-th-list pe-3"></i>
             </span>
-            <span class="aside-menu-title">{{ __('Blog Categories') }}</span>
+            <span class="aside-menu-title">{{ __('messages.subscription_plans') }}</span>
         </a>
     </li>
 
