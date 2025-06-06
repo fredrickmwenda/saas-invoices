@@ -63,13 +63,10 @@ class SubscriptionPlanTable extends LivewireTableComponent
             Column::make(__('Trial Period Unit'), 'trial_period_unit')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('Is Active'), 'is_active')
+            Column::make(__('Status'), 'status')
                 ->sortable()
-                ->format(function ($value, $row) {
-                    return view('subscriptions.toggle_active_button', [
-                        'isActive' => $value,
-                        'id' => $row->id,
-                    ]);
+                ->format(function ($value) {
+                    return ucfirst($value);
                 }),
             // Number of subscriptions in this plan by connectiong to subscription model from subscription_plan
             Column::make(__('Subscriptions'), 'subscriptions_count')

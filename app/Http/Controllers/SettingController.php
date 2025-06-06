@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateSettingRequest;
+use App\Models\Client;
 use App\Models\InvoiceSetting;
+use App\Models\User;
 use App\Repositories\SettingRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
 
 class SettingController extends AppBaseController
@@ -29,35 +32,58 @@ class SettingController extends AppBaseController
      */
     public function edit(Request $request): \Illuminate\View\View
     {
-        $defaultSettings = $this->settingRepository->editSettingsData();
-        $sectionName = ($request->section === null) ? 'general' : $request->section;
+        // $retVal = (condition) ? a : b ;
+        if (Auth::user()->hasRole('client')) {
+            $defaultSettings = $this->settingRepository->editSettingsData();
+            $sectionName = ($request->section === null) ? 'general' : $request->section;
 
-        $invoiceTemplate = InvoiceSetting::all()->toArray();
-        $defaultTemplate = $defaultTemplate = $this->settingRepository->getSettingByKey('default_invoice_template'); // Use the repository method here
+            $invoiceTemplate = InvoiceSetting::all()->toArray();
+            $defaultTemplate = $defaultTemplate = $this->settingRepository->getSettingByKey('default_invoice_template'); // Use the repository method here
 
-        return view("settings.$sectionName", compact('sectionName', 'invoiceTemplate', 'defaultTemplate'), $defaultSettings);
-    }
+            return view("settings.$sectionName", compact('sectionName', 'invoiceTemplate', 'defaultTemplate'), $defaultSettings);
+        }
+        else{
+        // return error here
+            dd('am here fuck you, how many times will i show you how to do that');
+        }
+    } 
+        
+    
 
-    public function update(UpdateSettingRequest $request): RedirectResponse
+    public function update(UpdateSettingRequest $request)
     {
-        $this->settingRepository->updateSetting($request->all());
-        Flash::success(__('messages.flash.setting_updated_successfully'));
+        if(Auth::user()->hasRole('client')|| Auth::user()->hasRole('admin')){
+            $this->settingRepository->updateSetting($request->all());
+            Flash::success(__('messages.flash.setting_updated_successfully'));
 
-        return redirect()->back();
+            return redirect()->back();
+        }
     }
 
     //Invoice Update
     public function invoiceUpdate(Request $request): RedirectResponse
-    {
-        $this->settingRepository->updateInvoiceSetting($request->all());
-        Flash::success(__('messages.flash.invoice_template_updated_successfully'));
+    {  
+        if(Auth::user()->hasRole('client')){
+            $this->settingRepository->updateInvoiceSetting($request->all());
+            Flash::success(__('messages.flash.invoice_template_updated_successfully'));
 
-        return redirect('admin/settings?section=setting-invoice');
+            return redirect('admin/settings?section=setting-invoice');
+        }
+
     }
 
     public function editInvoiceTemplate($key): mixed
     {
-        $invoiceTemplate = InvoiceSetting::where('key', $key)->get();
+        if(Auth::user()->hasRole('client')){
+            $user_id = Auth::user()->id;
+            $client_id = Client::where('user_id', $user_id)->id;
+            $invoiceTemplate = InvoiceSetting::where('key', $key)->where('client_id',$client_id)->get();
+        }
+        else{
+            //return error
+        }
+        
+        
 
         return $this->sendResponse($invoiceTemplate, 'InvoiceTemplate retrieved successfully.');
     }
@@ -65,10 +91,15 @@ class SettingController extends AppBaseController
     /**
      * @return Application|Factory|View
      */
-    public function invoiceSettings(): \Illuminate\View\View
+    public function invoiceSettings()
     {
-        $data['settings'] = $this->settingRepository->getSyncList();
+        if(Auth::user()->hasRole('client')){
+            $data['settings'] = $this->settingRepository->getSyncList();
 
-        return view('settings.invoice-settings', $data);
+            return view('settings.invoice-settings', $data);
+        }
+        else{
+            return back($status = 400);
+        }
     }
 }

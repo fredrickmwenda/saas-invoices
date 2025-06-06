@@ -10,9 +10,9 @@ class SubscriptionPayment extends Model
     use HasFactory;
 
     protected $table = 'subscription_payments';
-    public function tenant()
+    public function client()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function subscription()

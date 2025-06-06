@@ -44,9 +44,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Client extends Model  implements HasMedia
 {
-
     use InteractsWithMedia;
-    use HasFactory; 
+    use HasFactory;
+    use \App\Traits\HasClientScoping;
 
     protected $table = 'clients';
 
@@ -55,7 +55,7 @@ class Client extends Model  implements HasMedia
     public $fillable = [
         'first_name',
         'last_name',
-        //'user_id',
+        'user_id',
         'website',
         'company',
         'postal_code',
@@ -65,13 +65,14 @@ class Client extends Model  implements HasMedia
         'state_id',
         'city_id',
         'email',
+        'client_id'
     ];
 
     protected $casts = [
         'first_name' => 'string',
         'last_name' => 'string',
         'email' => 'string',
-        'website' => 'string',
+        'website' => 'string', 
         'company' =>  'string',
         'postal_code' => 'string',
         'address' => 'string',
@@ -79,7 +80,8 @@ class Client extends Model  implements HasMedia
         'country_id' => 'integer',
         'state_id' => 'integer',
         'city_id' => 'integer',
-       // 'user_id' => 'integer',
+        'user_id' => 'integer',
+        'client_id' => 'string'
     ];
 
     /**
@@ -141,6 +143,11 @@ class Client extends Model  implements HasMedia
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function client_contacts()
+    {
+        return $this->hasMany(ClientContact::class);
     }
 
   

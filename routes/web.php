@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPaymentController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Client as Client;
 use App\Http\Controllers\ClientController;
@@ -23,9 +24,11 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\TagController;
 
 use App\Http\Controllers\ClientContactController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MediaManagerController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubscriptionPlanController;
+use App\Http\Controllers\MpesaPaymentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -44,6 +47,10 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
+Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/get-states/{country_id}', [RegisteredUserController::class, 'getStates']);
+Route::get('/get-cities/{state_id}', [RegisteredUserController::class, 'getCities']);
+
 Route::middleware(['xss'])->group(function () {
     Route::get('/', function () {
         if (Auth::check()) {
@@ -61,12 +68,16 @@ Route::middleware(['xss'])->group(function () {
 
     // Route::get('/', [
     // 'index'])->name('index');
+
+    // add logout logic to clear session
+
+    Route::any('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     
 
 
 
     //sending contact form quote
-    Route::post('/send-contact-form', [ClientContactController::class, 'store'])->name('send.contact');
+    
     Route::post('update-language', [UserController::class, 'updateLanguage'])->name('change-language');
     //Notification routes
     Route::get('/notification/{notification}/read', [NotificationController::class, 'readNotification'])->name('read.notification');
@@ -99,7 +110,7 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
     )->name('yearly-income-chart');
 
     // User route
-    Route::resource('users', UserController::class);
+
     Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');
 
     //subscription plans
@@ -132,15 +143,7 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
 
  
     //Category Route
-    Route::resource('categories', CategoryController::class)->names([
-        'index' => 'category.index',
-        'create' => 'category.create',
-        'show' => 'category.show',
-        'store' => 'category.store',
-        'edit' => 'category.edit',
-        'update' => 'category.update',
-        'destroy' => 'category.destroy',
-    ]);
+
 
 
     Route::get('/media-manager/get-files', [MediaManagerController::class, 'index'])->name('uppy.index');
@@ -151,8 +154,7 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
     //service routes
     Route::resource('services', ServiceController::class);
 
-    //Product Route
-    Route::resource('products', ProductController::class);
+
 
     //Invoice
     Route::resource('invoices', InvoiceController::class);
@@ -256,6 +258,7 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
     Route::get('currency-reports', [DashboardController::class, 'currencyReports'])->name('currency.reports');
 });
 
+
 // Route::prefix('client')->middleware(['auth', 'xss', 'role:client'])->group(function () {
 //     Route::get(
 //         'dashboard',
@@ -307,29 +310,45 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
 //     // currency reports for invoices route
 //     Route::get('currency-reports', [DashboardController::class, 'currencyReports'])->name('client.currency.reports');
 // });
+Route::resource('users', UserController::class);
+Route::prefix('client')->middleware('xss')->group(function () {
+    //contacts
+    Route::resource('contacts', ClientContactController::class);
 
-// Route::prefix('client')->middleware('xss')->group(function () {
-//     Route::get('invoices/{invoice}/payment', [Client\PaymentController::class, 'show'])->name('clients.payments.show');
-//     //Payments
-//     Route::post('payments', [Client\PaymentController::class, 'store'])->name('clients.payments.store');
-//     Route::post('stripe-payment', [Client\StripeController::class, 'createSession'])->name('client.stripe-payment');
-//     Route::get('razorpay-onboard', [Client\RazorpayController::class, 'onBoard'])->name('razorpay.init');
-//     Route::get('paypal-onboard', [Client\PaypalController::class, 'onBoard'])->name('paypal.init');
+    //Product Route
+    Route::resource('products', ProductController::class);
 
-//     Route::get('payment-success', [Client\StripeController::class, 'paymentSuccess'])->name('payment-success');
-//     Route::get('failed-payment', [Client\StripeController::class, 'handleFailedPayment'])->name('failed-payment');
+    Route::resource('categories', CategoryController::class)->names([
+        'index' => 'category.index',
+        'create' => 'category.create',
+        'show' => 'category.show',
+        'store' => 'category.store',
+        'edit' => 'category.edit',
+        'update' => 'category.update',
+        'destroy' => 'category.destroy',
+    ]);
 
-//     Route::get('paypal-payment-success', [Client\PaypalController::class, 'success'])->name('paypal.success');
-//     Route::get('paypal-payment-failed', [Client\PaypalController::class, 'failed'])->name('paypal.failed');
+    Route::get('invoices/{invoice}/payment', [Client\PaymentController::class, 'show'])->name('clients.payments.show');
+    //Payments
+    Route::post('payments', [Client\PaymentController::class, 'store'])->name('clients.payments.store');
+    Route::post('stripe-payment', [Client\StripeController::class, 'createSession'])->name('client.stripe-payment');
+    Route::get('razorpay-onboard', [Client\RazorpayController::class, 'onBoard'])->name('razorpay.init');
+    Route::get('paypal-onboard', [Client\PaypalController::class, 'onBoard'])->name('paypal.init');
 
-//     // razorpay payment
-//     Route::post('razorpay-payment-success', [Client\RazorpayController::class, 'paymentSuccess'])
-//         ->name('razorpay.success');
-//     Route::post('razorpay-payment-failed', [Client\RazorpayController::class, 'paymentFailed'])
-//         ->name('razorpay.failed')->middleware('');
-//     Route::get('razorpay-payment-webhook', [Client\RazorpayController::class, 'paymentSuccessWebHook'])
-//         ->name('razorpay.webhook');
-// });
+    Route::get('payment-success', [Client\StripeController::class, 'paymentSuccess'])->name('payment-success');
+    Route::get('failed-payment', [Client\StripeController::class, 'handleFailedPayment'])->name('failed-payment');
+
+    Route::get('paypal-payment-success', [Client\PaypalController::class, 'success'])->name('paypal.success');
+    Route::get('paypal-payment-failed', [Client\PaypalController::class, 'failed'])->name('paypal.failed');
+
+    // razorpay payment
+    Route::post('razorpay-payment-success', [Client\RazorpayController::class, 'paymentSuccess'])
+        ->name('razorpay.success');
+    Route::post('razorpay-payment-failed', [Client\RazorpayController::class, 'paymentFailed'])
+        ->name('razorpay.failed')->middleware('');
+    Route::get('razorpay-payment-webhook', [Client\RazorpayController::class, 'paymentSuccessWebHook'])
+        ->name('razorpay.webhook');
+});
 
 
 Route::middleware(['auth', 'xss'])->group(function () {
@@ -348,7 +367,7 @@ Route::middleware(['auth', 'xss'])->group(function () {
 
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe');
 Route::get('/subscribe/verify/{hash}', [SubscriberController::class, 'verify'])->name('verify');
-Route::post('/send-enquiry', [ClientContactController::class, 'store'])->name('enquire');
+
 
 
 Route::get('/get-api-key', function () {
@@ -373,3 +392,9 @@ Route::get('/settings', function () {
 
 
 require __DIR__ . '/upgrade.php';
+
+// Auth::routes(['verify' => true]);
+
+// Mpesa Payment Routes
+Route::post('mpesa/stk-push', [MpesaPaymentController::class, 'stkPush'])->name('mpesa.stk-push');
+

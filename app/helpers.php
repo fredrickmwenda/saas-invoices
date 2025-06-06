@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 
 if (! function_exists('getLogInUser')) {
@@ -756,4 +757,48 @@ if (!function_exists('getSetting')) {
             return $default;
         }
     }
+}
+
+
+if (!function_exists('getPaymentMethods')) {
+
+function getPaymentMethods(): array
+{
+    $methods = ['stripe', 'paypal', 'mpesa'];
+    $result = [];
+
+    foreach ($methods as $method) {
+        $enabledKey = "{$method}_enabled";
+        $secretKey = "{$method}_secret";
+        $keyKey = "{$method}_key";
+
+        $enabled = DB::table('settings')->where('key', $enabledKey)->value('value');
+        $secret = DB::table('settings')->where('key', $secretKey)->value('value');
+        $key = DB::table('settings')->where('key', $keyKey)->value('value');
+
+        // Create missing settings with empty string
+        if ($enabled === null) {
+            DB::table('settings')->insert(['key' => $enabledKey, 'value' => '0']);
+            $enabled = '1';
+        }
+
+        if ($secret === null) {
+            DB::table('settings')->insert(['key' => $secretKey, 'value' => '']);
+            $secret = '';
+        }
+
+        if ($key === null) {
+            DB::table('settings')->insert(['key' => $keyKey, 'value' => '']);
+            $key = '';
+        }
+
+        $result[$method] = [
+            'enabled' => $enabled == '1',
+            'key'     => $key,
+            'secret'  => $secret,
+        ];
+    }
+
+    return $methods;
+}
 }

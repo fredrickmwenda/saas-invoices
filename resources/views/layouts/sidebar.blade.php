@@ -12,13 +12,24 @@
 
     <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
         <ul class="menu-inner">
+            @role('admin')
             <li class="menu-item">
                 <a href="{{ route('admin.dashboard') }}" class="menu-link">
-                    <span class="material-symbols-outlined menu-icon">deployed_code</span>
+                    
                     <span class="title">Dashboard</span>
                 </a>
             </li>
+            @endrole
 
+            @role('client')
+            <li class="menu-item">
+                <a href="{{ route('client.dashboard') }}" class="menu-link">                    
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            @endrole
+
+            @role('admin')
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">group</span>
@@ -38,21 +49,45 @@
  
                 </ul>
             </li>
+            @endrole
 
+            @role('client')
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">group</span>
+                    <span class="title">Contacts</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('contacts.index')}}" class="menu-link">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('contacts.create')}}" class="menu-link">
+                            Add Contact
+                        </a>
+                    </li>
+ 
+                </ul>
+            </li>
+            @endrole
+
+            @role('client')
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">inventory</span>
-                    <span class="title">Products</span>
+                    <span class="title">Products/Service</span>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
                         <a href="{{ route('products.index')}}" class="menu-link">
-                            Products
+                            Products/Service
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('products.create')}}" class="menu-link">
-                            Add Product
+                            Add Product/Service
                         </a>
                     </li>
 
@@ -93,7 +128,7 @@
                 </ul>
             </li>
 
-
+           
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">content_paste</span>
@@ -128,32 +163,13 @@
                     <span class="title">Transactions</span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
-                    <span class="material-symbols-outlined menu-icon">cards</span>
-                    <span class="title">Services</span>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="{{ route('services.index')}}" class="menu-link">
-                           Services
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ route('services.create')}}" class="menu-link">
-                            Add Service
-                        </a>
-                    </li>
- 
-                </ul>
-            </li>
+            @endrole
+           
 
-
+            @role('admin')
             <li class="menu-title small text-uppercase">
                 <span class="menu-title-text">Subscription</span>
             </li>
-
-          
 
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
@@ -177,6 +193,7 @@
  
                 </ul>
             </li>
+            @endrole
 
       
            
@@ -211,7 +228,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="my-profile.html" class="menu-link">
+                <a href="{{ route('profile.setting')}}" class="menu-link">
                     <span class="material-symbols-outlined menu-icon">account_circle</span>
                     <span class="title">My Profile</span>
                 </a>
@@ -228,10 +245,14 @@
    
 
             <li class="menu-item">
-                <a href="logout.html" class="menu-link">
+                <a href="{{route('logout')}}" class="menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span class="material-symbols-outlined menu-icon">logout</span>
                     <span class="title">Logout</span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
             </li>
         </ul>
     </aside>

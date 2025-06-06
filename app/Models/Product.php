@@ -45,10 +45,18 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Product extends Model implements HasMedia
 {
     use HasFactory, Notifiable, InteractsWithMedia;
+    use \App\Traits\HasClientScoping;
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'code', 'category_id', 'unit_price', 'description'];
+    protected $fillable = [
+        'name',
+        'code',
+        'category_id',
+        'unit_price',
+        'description',
+        'client_id'
+    ];
 
     protected $casts = [
         'name' => 'string',
@@ -56,6 +64,7 @@ class Product extends Model implements HasMedia
         'category_id' => 'integer',
         'unit_price' => 'double',
         'description' => 'string',
+        'client_id' => 'string'
     ];
 
     const Image = 'product';

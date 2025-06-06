@@ -36,8 +36,11 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(getDashboardURL());
         } elseif ($request->user()->hasRole('client')) {
             return redirect()->intended(getClientDashboardURL());
-        } else {
-            // User doesn't have 'admin' or 'client' role
+        } elseif ($request->user()->hasRole('client_user')) {
+            return redirect()->intended(getClientDashboardURL());
+        }
+        else {
+            // User doesn't have 'admin', 'client' or client_user role
             return redirect()
                 ->route('login')  // Adjust the route to your login route name
                 ->with('error', 'You do not have the required role.');
@@ -56,5 +59,36 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+     public function logout(Request $request): Response|Redirector|Application|RedirectResponse
+    {
+
+        if ($admin_id = Session::get('admin_user_id')) {
+            // Impersonate mode, back to original User
+            session()->forget('admin_user_id');
+            session()->forget('admin_user_name');
+            session()->forget('temp_user_id');
+            session()->forget('permissions');
+
+            auth()->loginUsingId((int) $admin_id);
+
+            session(['permissions' => auth()->user()->getPermissions()]);
+
+            return redirect()->route('admin.home');
+        }
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        if ($this->loggedOut($request)) {
+            return $this->loggedOut($request)->with([
+                'status'  => 'success',
+                'message' => 'Logout was successfully done',
+            ]);
+        } else {
+            return redirect('/login');
+        }
     }
 }

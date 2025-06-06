@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title')
+
     {{__('messages.add_admin')}}
+
 @endsection
 @section('content')
     @php $styleCss = 'style'; @endphp

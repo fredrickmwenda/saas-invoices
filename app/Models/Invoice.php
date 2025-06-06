@@ -78,6 +78,7 @@ use Illuminate\Support\Str;
 class Invoice extends Model
 {
     use HasFactory;
+    use \App\Traits\HasClientScoping;
 
     public const SELECT_DISCOUNT_TYPE = 0;
 
@@ -145,8 +146,8 @@ class Invoice extends Model
      * @var array
      */
     public static $rules = [
-        'client_id' => 'required',
         'invoice_id' => 'required|unique:invoices,invoice_id',
+        'client_id' => 'required|exists:tenants,id',
         'invoice_date' => 'required',
         'due_date' => 'required',
     ];
@@ -159,48 +160,46 @@ class Invoice extends Model
 
     public $table = 'invoices';
 
-    public $appends = ['status_label'];
+    protected $appends = ['status_label'];
 
     public $fillable = [
+        'invoice_id',
         'client_id',
         'invoice_date',
         'due_date',
-        'invoice_id',
-        'currency_id',
         'amount',
+        'final_amount',
         'discount_type',
         'discount',
-        'final_amount',
         'note',
         'term',
         'template_id',
-        'payment_qr_code_id',
-        'status',
         'recurring_status',
         'recurring_cycle',
-        'last_recurring_on',
-        'parent_id',
+        'status',
+        'tax_id',
+        'tax',
+        'currency_id',
+        'client_id'
     ];
 
     protected $casts = [
-        'client_id' => 'integer',
-        'parent_id' => 'integer',
+        'invoice_id' => 'string',
+        'client_id' => 'string',
         'invoice_date' => 'date',
         'due_date' => 'date',
-        'invoice_id' => 'string',
-        'currency_id' => 'integer',
         'amount' => 'double',
+        'final_amount' => 'double',
         'discount_type' => 'integer',
         'discount' => 'double',
-        'final_amount' => 'double',
-        'note' => 'string',
-        'term' => 'string',
-        'template_id' => 'integer',
         'status' => 'integer',
+        'template_id' => 'integer',
         'recurring_status' => 'integer',
         'recurring_cycle' => 'integer',
-        'last_recurring_on' => 'date',
+        'tax_id' => 'integer',
         'tax' => 'double',
+        'currency_id' => 'integer',
+        'client_id' => 'string'
     ];
 
     public function getStatusLabelAttribute(): string
@@ -211,6 +210,11 @@ class Invoice extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
+    }
+
+   public function clientContact(): BelongsTo
+    {
+        return $this->belongsTo(ClientContact::class, 'client_contact_id', 'id');
     }
 
     public function paymentQrCode(): BelongsTo

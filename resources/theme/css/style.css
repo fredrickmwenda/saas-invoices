@@ -1,74 +1,74 @@
 @charset "UTF-8";
+
 @font-face {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/Poppins-Regular.ttf?35d26b781dc5fda684cce6ea04a41a75) format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 700;
-  src: url(/fonts/Poppins-Bold.ttf?cdb29a5d7ccf57ff05a3fd9216d11771) format("truetype");
+  font-weight: 300;
+  src: url(/public/fonts/poppins-v23-latin-300.woff2) format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   font-style: italic;
-  font-weight: 700;
-  src: url(/fonts/Poppins-BoldItalic.ttf?cfb635a5111b545f5598482a64d2a2c3) format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  src: url(/fonts/Poppins-Medium.ttf?673ed42382ab264e0bf5b33f3579568c) format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: italic;
-  font-weight: 500;
-  src: url(/fonts/Poppins-MediumItalic.ttf?89e040c6a64d18f620dc8547b01b6291) format("truetype");
+  font-weight: 300;
+  src: url(/public/fonts/poppins-v23-latin-300italic.woff2) format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/Poppins-Regular.ttf?35d26b781dc5fda684cce6ea04a41a75) format("truetype");
+  src: url(/public/fonts/Poppins-Regular.ttf) format("truetype");
   font-display: swap;
 }
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 700;
-  src: url(/fonts/Poppins-Bold.ttf?cdb29a5d7ccf57ff05a3fd9216d11771) format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: italic;
-  font-weight: 700;
-  src: url(/fonts/Poppins-BoldItalic.ttf?cfb635a5111b545f5598482a64d2a2c3) format("truetype");
-  font-display: swap;
-}
+
 @font-face {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  src: url(/fonts/Poppins-Medium.ttf?673ed42382ab264e0bf5b33f3579568c) format("truetype");
+  src: url(/public/fonts/poppins-v23-latin-500.woff2) format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   font-style: italic;
   font-weight: 500;
-  src: url(/fonts/Poppins-MediumItalic.ttf?89e040c6a64d18f620dc8547b01b6291) format("truetype");
+  src: url(/public/fonts/poppins-v23-latin-500italic.woff2) format("woff2");
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  src: url(/public/fonts/poppins-v23-latin-600.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 600;
+  src: url(/public/fonts/poppins-v23-latin-600italic.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url(/public/fonts/poppins-v23-latin-700.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 700;
+  src: url(/public/fonts/poppins-v23-latin-700italic.woff2) format("woff2");
+  font-display: swap;
+}
+
+
+
 :root {
   --bs-blue: #0099FB;
   --bs-indigo: #6610f2;

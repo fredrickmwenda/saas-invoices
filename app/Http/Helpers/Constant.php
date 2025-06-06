@@ -1073,3 +1073,5 @@ if (!function_exists('recaptchaValidation')) {
         return $score;
     }
 }
+
+

@@ -21,17 +21,17 @@
                 <p class="fw-medium fs-16 mb-4">Sign In with social account or enter your details</p>
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-sm-4">
-                        <a href="#" target="_blank" class="btn btn-outline-secondary bg-transparent w-100 py-2 hover-bg mb-4" style="border-color: #D6DAE1;">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary bg-transparent w-100 py-2 hover-bg mb-4" style="border-color: #1b212c;">
                             <img src="{{asset('trezo/images/google.svg')}}" alt="google">
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-4">
-                        <a href="#" target="_blank" class="btn btn-outline-secondary bg-transparent w-100 py-2 hover-bg mb-4" style="border-color: #D6DAE1;">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary bg-transparent w-100 py-2 hover-bg mb-4" style="border-color: #1b212c;">
                             <img src="{{asset('trezo/images/facebook2.svg')}}" alt="facebook2">
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-4">
-                        <a href="#" target="_blank" class="btn btn-outline-secondary bg-transparent w-100 py-2 hover-bg mb-4" style="border-color: #D6DAE1;">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary bg-transparent w-100 py-2 hover-bg mb-4" style="border-color: #1b212c;">
                             <img src="{{asset('trezo/images/apple.svg')}}" alt="apple">
                         </a>
                     </div>
@@ -43,7 +43,7 @@
                         <input type="email" name="email" class="form-control h-55" placeholder="email@gmail.com">
                     </div>
                     <div class="form-group mb-sm-7 mb-4">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between"> 
                             <label for="password" class="form-label">Password:<span class="required"></span></label>
                             <a href="#" class="link-info fs-6 text-decoration-none">
                                 Forgot your password?
@@ -67,7 +67,7 @@
                      <div class="form-group">
                                     <p>
                                         Don’t have an account. 
-                                        <a href="#" class="fw-medium text-primary text-decoration-none">Register</a>
+                                        <a href="{{route('register')}}" class="fw-medium text-primary text-decoration-none">Register</a>
                                     </p>
                                 </div>
                 </form>

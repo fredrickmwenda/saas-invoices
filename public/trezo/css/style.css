@@ -12,8 +12,22 @@ This files table contents are outlined below>>>>>
 @font-face {
   font-family: "Poppins";
   font-style: normal;
+  font-weight: 300;
+  src: url(../../../fonts/poppins-v23-latin-300.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 300;
+  src: url(../../../fonts/poppins-v23-latin-300italic.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
   font-weight: 400;
-  src: url(/public/fonts/Poppins-Regular.ttf?35d26b781dc5fda684cce6ea04a41a75) format("truetype");
+  src: url(../../../fonts/Poppins-Regular.ttf) format("truetype");
   font-display: swap;
 }
 
@@ -21,14 +35,29 @@ This files table contents are outlined below>>>>>
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  src: url(/public/fonts/Poppins-Medium.ttf?673ed42382ab264e0bf5b33f3579568c) format("truetype");
+  src: url(../../../fonts/poppins-v23-latin-500.woff2) format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   font-style: italic;
   font-weight: 500;
-  src: url(/public/fonts/Poppins-MediumItalic.ttf?89e040c6a64d18f620dc8547b01b6291) format("truetype");
+  src: url(../../../fonts/poppins-v23-latin-500italic.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  src: url(../../../fonts/poppins-v23-latin-600.woff2) format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 600;
+  src: url(../../../fonts/poppins-v23-latin-600italic.woff2) format("woff2");
   font-display: swap;
 }
 
@@ -36,16 +65,17 @@ This files table contents are outlined below>>>>>
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  src: url(/public/fonts/Poppins-Bold.ttf?cdb29a5d7ccf57ff05a3fd9216d11771) format("truetype");
+  src: url(../../../fonts/poppins-v23-latin-700.woff2) format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   font-style: italic;
   font-weight: 700;
-  src: url(/public/fonts/Poppins-BoldItalic.ttf?cfb635a5111b545f5598482a64d2a2c3) format("truetype");
+  src: url(../../../fonts/poppins-v23-latin-700italic.woff2) format("woff2");
   font-display: swap;
 }
+
 
 :root,
 [data-bs-theme=light] {
@@ -943,7 +973,8 @@ progress {
   --bs-code-color: #e685b5;
   --bs-highlight-color: #dee2e6;
   --bs-highlight-bg: #664d03;
-  --bs-border-color: #495057;
+  --bs-border-color: #050912; 
+  /* --bs-border-color: #495057; */
   --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
   --bs-form-valid-color: #75b798;
   --bs-form-valid-border-color: #75b798;
@@ -2881,7 +2912,7 @@ progress {
   appearance: none;
   background-color: var(--bs-body-bg);
   background-clip: padding-box;
-  border: var(--bs-border-width) solid var(--bs-border-color);
+  border: var(--bs-border-width) solid #050912;
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -3034,7 +3065,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
-  border: var(--bs-border-width) solid var(--bs-border-color);
+  border: var(--bs-border-width) solid #050912;
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -3115,7 +3146,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: var(--bs-border-width) solid var(--bs-border-color);
+  border: var(--bs-border-width) solid #050912;
   print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
@@ -3420,7 +3451,7 @@ textarea.form-control-lg {
   text-align: center;
   white-space: nowrap;
   background-color: var(--bs-tertiary-bg);
-  border: var(--bs-border-width) solid var(--bs-border-color);
+  border: var(--bs-border-width) solid #050912;
   border-radius: var(--bs-border-radius);
 }
 
@@ -13390,7 +13421,7 @@ img {
 
 .form-control {
   background-color: #fff;
-  border: 1px solid #D5D9E2;
+  border: 1px solid #050912;
   height: 50px;
   color: #3A4252 !important;
   font-size: 15px;

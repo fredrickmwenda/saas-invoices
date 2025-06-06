@@ -4,10 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class SubscriptionPlan extends Model
 {
     use HasFactory;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = Str::uuid()->toString();
+            }
+        });
+    }
 
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
@@ -26,6 +41,7 @@ class SubscriptionPlan extends Model
         'price',
         'duration',
         'duration_unit',
+        'features',
         'status',
         'description',
         'currency',
@@ -37,6 +53,7 @@ class SubscriptionPlan extends Model
         'status' => 'string',
         'description' => 'string',
         'currency' => 'string',
+        'features' => 'array',
     ];
 
     public const VALID_STATUSES = [
@@ -53,6 +70,7 @@ class SubscriptionPlan extends Model
         'status' => 'required|in:' . 'active,inactive,archived',        
         'description' => 'nullable|string|max:1000',
         'currency' => 'required|string|max:3',
+        'features' => 'required|array',
     ];
 
     /**
