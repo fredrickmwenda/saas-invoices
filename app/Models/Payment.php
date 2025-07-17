@@ -67,7 +67,7 @@ class Payment extends Model implements HasMedia
         'transaction_id' => 'string',
         'meta' => 'json',
         'notes' => 'string',
-        'user_id' => 'integer',
+        'client_id' => 'integer',
         'is_approved' => 'integer',
     ];
 
@@ -115,23 +115,23 @@ class Payment extends Model implements HasMedia
 
     const MANUAL = 1;
 
-    const STRIPE = 2;
+    const MPESA = 2;
 
     const PAYPAL = 3;
 
     const CASH = 4;
 
-    const RAZORPAY = 5;
+    const PAYSTACK = 5;
 
     const ALL = 0;
 
     const PAYMENT_MODE = [
         self::ALL => 'All',
         self::MANUAL => 'Manual',
-        self::STRIPE => 'Stripe',
+        self::MPESA => 'Mpesa',
         self::PAYPAL => 'Paypal',
         self::CASH => 'Cash',
-        self::RAZORPAY => 'Razorpay',
+        self::PAYSTACK => 'Paystack',
     ];
 
     public static $rules = [

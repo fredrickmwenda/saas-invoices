@@ -28,7 +28,7 @@ class QuoteItem extends Model
      * @var array
      */
     public static $rules = [
-        'product_id' => 'required',
+        'service_id' => 'required',
         'quantity' => 'required|integer',
         'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
     ];
@@ -39,15 +39,15 @@ class QuoteItem extends Model
      * @var array
      */
     public static $messages = [
-        'product_id.required' => 'The product field is required',
+        'service_id.required' => 'The product field is required',
     ];
 
     protected $table = 'quote_items';
 
     public $fillable = [
         'quote_id',
-        'product_id',
-        'product_name',
+        'service_id',
+        'service_name',
         'quantity',
         'price',
         'total',
@@ -55,15 +55,15 @@ class QuoteItem extends Model
 
     protected $casts = [
         'quote_id' => 'integer',
-        'product_id' => 'integer',
-        'product_name' => 'string',
+        'service_id' => 'integer',
+        'service_name' => 'string',
         'quantity' => 'integer',
         'price' => 'double',
         'total' => 'double',
     ];
 
-    public function product(): BelongsTo
+    public function service(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Service::class);
     }
 }

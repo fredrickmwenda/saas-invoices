@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property int $id
  * @property int $invoice_id
- * @property int|null $product_id
- * @property string|null $product_name
+ * @property int|null $service_id
+ * @property string|null $service_name
  * @property int $quantity
  * @property float $price
  * @property float $total
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\InvoiceItemTax[] $invoiceItemTax
  * @property-read int|null $invoice_item_tax_count
- * @property-read \App\Models\Product|null $product
+ * @property-read \App\Models\Service|null $Service
  *
  * @method static Builder|InvoiceItem newModelQuery()
  * @method static Builder|InvoiceItem newQuery()
@@ -31,8 +31,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static Builder|InvoiceItem whereId($value)
  * @method static Builder|InvoiceItem whereInvoiceId($value)
  * @method static Builder|InvoiceItem wherePrice($value)
- * @method static Builder|InvoiceItem whereProductId($value)
- * @method static Builder|InvoiceItem whereProductName($value)
+ * @method static Builder|InvoiceItem whereServiceId($value)
+ * @method static Builder|InvoiceItem whereServiceName($value)
  * @method static Builder|InvoiceItem whereQuantity($value)
  * @method static Builder|InvoiceItem whereTotal($value)
  * @method static Builder|InvoiceItem whereUpdatedAt($value)
@@ -49,7 +49,7 @@ class InvoiceItem extends Model
      * @var array
      */
     public static $rules = [
-        'product_id' => 'required',
+        'service_id' => 'required',
         'quantity' => 'required|regex:/^\d*(\.\d{1,2})?$/',
         'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
     ];
@@ -58,8 +58,8 @@ class InvoiceItem extends Model
 
     public $fillable = [
         'invoice_id',
-        'product_id',
-        'product_name',
+        'service_id',
+        'service_name',
         'quantity',
         'price',
         'total',
@@ -67,16 +67,16 @@ class InvoiceItem extends Model
 
     protected $casts = [
         'invoice_id' => 'integer',
-        'product_id' => 'integer',
-        'product_name' => 'string',
+        'service_id' => 'integer',
+        'service_name' => 'string',
         'quantity' => 'double',
         'price' => 'double',
         'total' => 'double',
     ];
 
-    public function product(): BelongsTo
+    public function service(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Service::class);
     }
 
     public function invoiceItemTax(): HasMany

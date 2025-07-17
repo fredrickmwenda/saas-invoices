@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('tenant_id');
             $table->integer('subscription_id');
             $table->decimal('amount', 10, 2)->default(0);
-            $table->enum('payment_method', ['credit', 'cash', 'bank', 'mpesa'])->default('cash');
+            $table->enum('payment_method', ['credit', 'cash', 'bank', 'mpesa', 'paypal', 'paystack'])->default('cash');
             $table->enum('status', ['successful', 'failed']);
             $table->timestamps();
         });

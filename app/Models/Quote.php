@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\BelongsToTenantTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -62,7 +63,7 @@ use Illuminate\Support\Str;
  */
 class Quote extends Model
 {
-    use HasFactory;
+    use HasFactory, BelongsToTenantTrait;
 
     const SELECT_DISCOUNT_TYPE = 0;
 

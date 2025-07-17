@@ -32,7 +32,8 @@
         "stancl/tenancy": "^3.9",
         "stripe/stripe-php": "^7.104",
         "tightenco/ziggy": "^1.1",
-        "usernotnull/tall-toasts": "^1.7"
+        "usernotnull/tall-toasts": "^1.7",
+        "yabacon/paystack-php": "^2.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

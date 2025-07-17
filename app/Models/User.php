@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -97,6 +98,7 @@ class User extends Authenticatable implements HasMedia
         'ar' => 'Arabic',
         'zh' => 'Chinese',
         'tr' => 'Turkish',
+        'sw' => 'Swahili',
     ];
 
     const LANGUAGES_IMAGE = [
@@ -109,6 +111,7 @@ class User extends Authenticatable implements HasMedia
         'ar' => 'web/media/flags/iraq.svg',
         'zh' => 'web/media/flags/china.svg',
         'tr' => 'web/media/flags/turkey.svg',
+        'sw' => 'web/media/flags/kenya.svg'
     ];
 
     /**
@@ -176,7 +179,7 @@ class User extends Authenticatable implements HasMedia
             return $media->getFullUrl();
         }
 
-        return asset('assets/images/avatar.png');
+        return asset('images/avatar.png');
     }
 
     public function getRoleNameAttribute()

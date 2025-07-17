@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\BelongsToTenantTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -77,7 +78,7 @@ use Illuminate\Support\Str;
  */
 class Invoice extends Model
 {
-    use HasFactory;
+    use HasFactory, BelongsToTenantTrait;
 
     public const SELECT_DISCOUNT_TYPE = 0;
 

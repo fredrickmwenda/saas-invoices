@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Traits\BelongsToTenantTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -42,11 +44,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  *
  * @mixin \Eloquent
  */
-class Client extends Model  implements HasMedia
-{
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-    use InteractsWithMedia;
-    use HasFactory; 
+class Client extends Authenticatable implements HasMedia
+{
+    use HasFactory, InteractsWithMedia, Notifiable, BelongsToTenantTrait;
 
     protected $table = 'clients';
 
@@ -55,7 +57,6 @@ class Client extends Model  implements HasMedia
     public $fillable = [
         'first_name',
         'last_name',
-        //'user_id',
         'website',
         'company',
         'postal_code',
@@ -92,7 +93,7 @@ class Client extends Model  implements HasMedia
         'last_name' => 'required',
         'company' => 'required',
         'email' => 'required|email:filter|unique:clients,email',
-        // 'password' => 'required|same:password_confirmation|min:6',
+        'password' => 'required|same:password_confirmation|min:6',
         'postal_code' => 'string',
         'address' => 'nullable||string',
         'website' => 'nullable|url',
@@ -115,13 +116,13 @@ class Client extends Model  implements HasMedia
             return $media->getFullUrl();
         }
 
-        return asset('assets/images/avatar.png');
+        return asset('images/avatar.png');
     }
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
+    // public function user(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class, 'user_id', 'id');
+    // }
 
     public function country(): BelongsTo
     {
@@ -138,9 +139,27 @@ class Client extends Model  implements HasMedia
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
 
+
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    // All subscriptions for the client
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    // Only the active subscription for the client
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class)->where('status', 'active');
+    }
+
+    public function subscriptionPlan()
+    {
+        return $this->hasOneThrough(SubscriptionPlan::class, Subscription::class);
     }
 
   

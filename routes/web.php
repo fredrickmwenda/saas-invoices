@@ -26,6 +26,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ClientContactController;
 use App\Http\Controllers\MediaManagerController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PaystackController;
+use App\Http\Controllers\SubscriptionPaymentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -114,23 +116,7 @@ Route::prefix('admin')->middleware(['auth', 'xss', 'role:admin'])->group(functio
     Route::post('/tags/update-tag', [TagController::class, 'update'])->name('tags.update');
     Route::delete('/tags/delete/{id}', [TagController::class, 'destroy'])->name('tags.delete');
 
-    Route::prefix('blogs')->name('blogs.')->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('index');
-        Route::get('/add-blog', [BlogController::class, 'create'])->name('create');
-        Route::post('/add-blog', [BlogController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('edit');
-        Route::post('/update-blog', [BlogController::class, 'update'])->name('update');
-        Route::post('/update-popular', [BlogController::class, 'updatePopular'])->name('updatePopular');
-        Route::post('/update-status', [BlogController::class, 'updateStatus'])->name('updateStatus');
-        Route::get('/delete/{id}', [BlogController::class, 'delete'])->name('delete');
 
-        # categories
-        Route::get('/categories', [BlogCategoryController::class, 'index'])->name('blogCategories.index');
-        Route::post('/category', [BlogCategoryController::class, 'store'])->name('blogCategories.store');
-        Route::get('/categories/edit/{id}', [BlogCategoryController::class, 'edit'])->name('blogCategories.edit');
-        Route::post('/categories/update-category', [BlogCategoryController::class, 'update'])->name('blogCategories.update');
-        Route::get('/categories/delete/{id}', [BlogCategoryController::class, 'delete'])->name('blogCategories.delete');
-    });
     //Category Route
     Route::resource('categories', CategoryController::class)->names([
         'index' => 'category.index',
@@ -359,3 +345,11 @@ Route::get('/get-api-key', function () {
 
 
 require __DIR__ . '/upgrade.php';
+
+Route::post('/paystack/initialize', [PaystackController::class, 'initialize'])->name('paystack.initialize');
+Route::get('/paystack/callback', [PaystackController::class, 'callback'])->name('paystack.callback');
+Route::post('/paystack/webhook', [PaystackController::class, 'webhook'])->name('paystack.webhook');
+
+// Subscription payment endpoints
+Route::post('/subscription/pay', [SubscriptionPaymentController::class, 'pay'])->name('subscription.pay');
+Route::get('/subscription/paystack/callback', [SubscriptionPaymentController::class, 'callback'])->name('subscription.paystack.callback');

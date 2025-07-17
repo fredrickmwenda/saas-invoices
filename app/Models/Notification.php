@@ -49,7 +49,7 @@ class Notification extends Model
      */
     public $fillable = [
         'type',
-        'user_id',
+        'client_id',
         'title',
         'text',
         'meta',
@@ -62,18 +62,17 @@ class Notification extends Model
         'text' => 'string',
         'meta' => 'json',
         'read_at' => 'datetime',
-        'user_id' => 'integer',
+        'client_id' => 'integer',
     ];
 
     const NOTIFICATION_TYPE = [
-        'Invoice Created' => 1,
-        'Invoice Updated' => 2,
-        'Invoice Payment' => 3,
-        'Invoice Status' => 4,
+        'Subscription Payment' => 1,
+        'Subscription Expiry' => 2,
+        'Subscription Change' => 3,
     ];
 
-    public function user(): BelongsTo
+    public function client(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }
