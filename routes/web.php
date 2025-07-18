@@ -29,6 +29,7 @@ use App\Http\Controllers\MediaManagerController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubscriptionPlanController;
 use App\Http\Controllers\MpesaPaymentController;
+use App\Http\Controllers\PaystackController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -398,3 +399,10 @@ require __DIR__ . '/upgrade.php';
 // Mpesa Payment Routes
 Route::post('mpesa/stk-push', [MpesaPaymentController::class, 'stkPush'])->name('mpesa.stk-push');
 
+Route::post('/paystack/initialize', [PaystackController::class, 'initialize'])->name('paystack.initialize');
+Route::get('/paystack/callback', [PaystackController::class, 'callback'])->name('paystack.callback');
+Route::post('/paystack/webhook', [PaystackController::class, 'webhook'])->name('paystack.webhook');
+
+// Subscription payment endpoints
+// Route::post('/subscription/pay', [SubscriptionPaymentController::class, 'pay'])->name('subscription.pay');
+// Route::get('/subscription/paystack/callback', [SubscriptionPaymentController::class, 'callback'])->name('subscription.paystack.callback');
